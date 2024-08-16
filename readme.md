@@ -1,4 +1,6 @@
-# INF99X: Sample Course
+# Azure SQL Development
+
+This repo contains exercise files for Microsoft learn and ILT content.
 
 **Are you an MCT?** - Have a look at our [GitHub User Guide for MCTs](https://microsoftlearning.github.io/MCT-User-Guide/)
 
