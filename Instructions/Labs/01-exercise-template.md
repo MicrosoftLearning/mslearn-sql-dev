@@ -1,11 +1,9 @@
 ---
 lab:
     title: 'Exercise Title'
-    module: 'Learn module title'
 ---
 <!--
 Edit the metadata above to manage the list of exercises in the home page of the GitHub site that gets generated.
-You can delete the module and edit index.md in the root of the repo to customize the display so that only the exercises are listed
 To enable GitHub page publishing, edit the Page settings for the repo and publish from the main branch
 -->
 
