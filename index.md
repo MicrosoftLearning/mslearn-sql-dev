@@ -4,10 +4,7 @@ permalink: index.html
 layout: home
 ---
 
-# Exercises
-
-Hyperlinks to each of the lab exercises and demos are listed below.
-
+# Azure SQL Development Exercises
 
 {% assign labs = site.pages | where_exp:"page", "page.url contains '/Instructions/Labs'" %}
 {% for activity in labs  %}
