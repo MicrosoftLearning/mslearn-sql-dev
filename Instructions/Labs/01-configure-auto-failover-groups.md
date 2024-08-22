@@ -83,7 +83,7 @@ To connect your .NET application to the Azure SQL Database endpoint, you’ll ne
     dotnet new console -n AdventureWorksLTApp 
     ```
 
-1. Navigate to the `AdventureWorksLTApp` folder that was created with the previous step, and open it in **VS Code**.
+1. Navigate to the `AdventureWorksLTApp` folder that was created with the previous step, and open it in **Visual Studio Code**.
 
 1. Create an `appsettings.json` file in the root of your project directory. This configuration file will store your database connection string. Be sure to replace the **Server** and **Password** values in the connection string with your actual details.
 
@@ -95,7 +95,7 @@ To connect your .NET application to the Azure SQL Database endpoint, you’ll ne
 }
 ```
 
-1. Open the `.csproj` file in **VS Code** and add the following content right below the `</PropertyGroup>` tag.
+1. Open the `.csproj` file in **Visual Studio Code** and add the following content right below the `</PropertyGroup>` tag.
 
     ```xml
     <ItemGroup>
@@ -126,7 +126,7 @@ To connect your .NET application to the Azure SQL Database endpoint, you’ll ne
     </Project>
     ```
 
-1. Open the `Program.cs` file in **VS Code**. In the editor, replace all the existing code with the code provided below.
+1. Open the `Program.cs` file in **Visual Studio Code**. In the editor, replace all the existing code with the code provided below.
 
     > **Note:** Take a moment to review the code and observe how it prints information about the primary and secondary servers in the auto-failover group.
 
@@ -200,7 +200,7 @@ To connect your .NET application to the Azure SQL Database endpoint, you’ll ne
 
     > **Important:** If you receive a message *"You don't have an extension for debugging C#. Should we find a C# extension in the Marketplace?"*, ensure that the **C# Dev Kit** extension is installed.
 
-1. After running the code, you should see the output in the **Debug Console** tab in VS Code.
+1. After running the code, you should see the output in the **Debug Console** tab in Visual Studio Code.
 
     ```
     Primary Server: <your_server_name>
