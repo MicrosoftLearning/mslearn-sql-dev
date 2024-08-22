@@ -6,17 +6,23 @@ lab:
 
 # Enable application resilience with auto-failover groups for Azure SQL Database
 
-In this exercise you’ll create two Azure SQL databases, configure auto-failover groups to ensure high availability and disaster recovery of your application databases, and validate the replication status on your application.
+In this exercise you’ll create two Azure SQL databases that will act as primary and secondary. You'll configure auto-failover groups to ensure high availability and disaster recovery of your application databases, and validate the replication status on your application.
 
 This exercise should take approximately **30** minutes to complete.
 
-You'll need to have [VS Code](https://code.visualstudio.com/download) installed on your computer to run this exercise.
+## Before you start
+
+Before you can start this exercise, you'll need:
+
+- An Azure subscription with appropriate permissions to create and manage resources.
+- [**Visual Studio Code**](https://code.visualstudio.com/download?azure-portal=true) installed on your computer with the following extension installed:
+    - [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit?azure-portal=true).
 
 ## Create primary and secondary Azure SQL servers
 
 First, we'll set up both primary and secondary servers, and we'll use the **AdventureWorksLT** sample database.
 
-1. Sign in to the [Azure portal](https://portal.azure.com/).
+1. Sign in to the [Azure portal](https://portal.azure.com?azure-portal=true).
 
 1. Select the Cloud Shell icon in the top-right corner of the Azure portal. It looks like a `>_` symbol. If prompted, choose **Bash** as the shell type.
 
@@ -69,8 +75,6 @@ Next, you’ll create an auto-failover group for the Azure SQL Database you prev
 ## Integrate with the application code
 
 To connect your .NET application to the Azure SQL Database endpoint, you’ll need to follow these steps.
-
-1. Open **VS Code**, select the **Extensions** icon in the left sidebar, and search for **C# Dev Kit**. Once you find it, select the extension and install it.
 
 1. Open the **Cloud Shell** terminal and run the following commands to install the `Microsoft.Data.SqlClient` package and create a new .NET console application.
 
