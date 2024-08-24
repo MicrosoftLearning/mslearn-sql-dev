@@ -125,23 +125,34 @@ Now that you have pushed the changes, let's verify them in the GitHub repository
 
 ## Set up Continuous Integration (CI) with GitHub Actions
 
-GitHub Actions allow you to automate, customize, and execute your software development workflows right in your GitHub repository. In this section, you'll set up a GitHub Actions workflow to build and test your Azure SQL Database project by creating a new table in the database.
-
 GitHub Actions enable you to automate, customize, and run your software development workflows directly in your GitHub repository. In this section, you'll configure a GitHub Actions workflow to build and test your Azure SQL Database project by creating a new table in the database.
+
+### Create a Service Principal
+
+1. Select the **Cloud Shell** icon in the top-right corner of the Azure portal. It looks like a `>_` symbol. If prompted, choose **Bash** as the shell type.
+
+1. Run the following command in the Cloud Shell terminal. Replace the values `<your_subscription_id>`, and `<your_resource_group_name>` with your actual values. You can get these values on the **Resource group** page on Azure portal.
+
+    ```azurecli
+    az ad sp create-for-rbac --name "MyDBProj" --role contributor --scopes /subscriptions/<your_subscription_id>/resourceGroups/<your_resource_group_name>
+    ```
+
+1. Copy the output to a text editor. We'll reference it in the next section.
 
 ### Add secrets to the repository
 
 1. In the GitHub repository, select **Settings**.
 1. Select **Secrets and variables**, and then **Actions**.
-1. On the **Variables** tab, select **New repository variable**, and provide the following information.
+1. On the **Secrets** tab, select **New repository secret**, and provide the following information.
 
-    | Name | Value |
-    | --- | --- |
-    | SQL_SERVER_NAME | *Your Azure SQL Database server name* |
-    | SQL_ADMIN_USER | ***sqladmin***** |
-    | SQL_ADMIN_PASSWORD | *Your Azure SQL Database admin password* |
+    | Name | Value | Type |
+    | --- | --- | --- |
+    | AZURE_CREDENTIALS | The service principal output copied in the previous section.|
+    | AZURE_CONN_STRING | Your connection string. |
+    
+    Your connection string should look similar to this:
 
-    > **Note:** In a production environment, consider to use secrets for passwords since they're encrypted and protect sensitive data. 
+    ```Server=<your_sqldb_server>.database.windows.net;Initial Catalog=MyDB;Persist Security Info=False;User ID=sqladmin;Password=<your_password>;Encrypt=True;Connection Timeout=30;```
 
 ### Create a GitHub Actions workflow
 
@@ -151,31 +162,38 @@ GitHub Actions enable you to automate, customize, and run your software developm
 
     ```yaml
     name: Build and Deploy SQL Database Project
-    
     on:
       push:
         branches:
           - main
-    
     jobs:
       build:
+        permissions:
+          contents: 'read'
+          id-token: 'write'
+          
         runs-on: ubuntu-latest  # Can also use windows-latest depending on your environment
-    
         steps:
           - name: Checkout repository
             uses: actions/checkout@v3
     
+          - name: Login to Azure
+            uses: azure/login@v1
+            with:
+              creds: ${{ secrets.AZURE_CREDENTIALS }}
     
           # Build and Deploy SQL Project
           - name: Build and Deploy SQL Project
             uses: azure/sql-action@v2.3
             with:
-              connection-string: "Server=tcp:${{secrets.SQL_SERVER_NAME}}.database.windows.net,1433;Initial Catalog=MyDB;Persist Security Info=False;User ID=${{ secrets.SQL_ADMIN_USER }};Password=${{secrets.SQL_ADMIN_PASSWORD}};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+              connection-string: ${{ secrets.AZURE_CONN_STRING }}
               path: './MyProjDB/MyProjDB.sqlproj'
               action: 'publish'
               build-arguments: '-c Release'
               arguments: '/p:DropObjectsNotInSource=true'  # Optional: Customize as needed
-        ```
+      ```
+
+      The **Build and Deploy SQL Project** step in your YAML file connects to your Azure SQL Database using the connection string stored in the `AZURE_CONN_STRING` secret. The action specifies the path to your SQL project file, sets the action to publish to deploy the project, and includes build arguments to compile in Release mode. Additionally, it uses the `/p:DropObjectsNotInSource=true` argument to ensure that any objects not present in the source are dropped from the target database during deployment.
 
 1. Select the **Commit changes** button.
 1. Select **Commit directly to the main branch**, and then **Commit changes** again.
