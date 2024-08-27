@@ -8,6 +8,8 @@ lab:
 
 In this exercise you'll create, configure, and deploy CI/CD pipelines for Azure SQL Database projects using Visual Studio Code and GitHub Actions. This allows you to familiarize yourself with the process of setting up CI/CD pipelines for Azure SQL Database projects.
 
+This exercise should take approximately **30** minutes to complete.
+
 ## Before you start
 
 Before you can start this exercise, you need:
