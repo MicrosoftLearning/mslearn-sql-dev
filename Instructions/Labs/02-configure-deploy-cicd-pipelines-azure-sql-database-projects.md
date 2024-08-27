@@ -122,7 +122,7 @@ Now that you have pushed the changes, let's verify them in the GitHub repository
 
 1. Open the [GitHub](https://github.com) website.
 1. Navigate to the **MyDBProj** repository.
-1. On the **<> Code** tab, open the **MyProjDB** folder.
+1. On the **<> Code** tab, open the **MyDBProj** folder.
 1. Check if the changes in the **Employees.sql** file are up to date.
 
 ## Set up Continuous Integration (CI) with GitHub Actions
@@ -147,11 +147,22 @@ GitHub Actions enable you to automate, customize, and run your software developm
 1. Select **Secrets and variables**, and then **Actions**.
 1. On the **Secrets** tab, select **New repository secret**, and provide the following information.
 
-    | Name | Value | Type |
-    | --- | --- | --- |
+    | Name | Value |
+    | --- | --- |
     | AZURE_CREDENTIALS | The service principal output copied in the previous section.|
     | AZURE_CONN_STRING | Your connection string. |
-    
+
+    Your Azure credentials should look similar to this:
+   
+   ```
+   {
+    "clientSecret": <your_service_principal_password>,
+    "subscriptionId": <your_subscription_id>,
+    "tenantId": <your_service_principal_tenant>,
+    "clientId": <your_service_principal_appId>
+    }
+   ```
+   
     Your connection string should look similar to this:
 
     ```Server=<your_sqldb_server>.database.windows.net;Initial Catalog=MyDB;Persist Security Info=False;User ID=sqladmin;Password=<your_password>;Encrypt=True;Connection Timeout=30;```
@@ -189,7 +200,7 @@ GitHub Actions enable you to automate, customize, and run your software developm
             uses: azure/sql-action@v2.3
             with:
               connection-string: ${{ secrets.AZURE_CONN_STRING }}
-              path: './MyProjDB/MyProjDB.sqlproj'
+              path: './MyDBProj/MyDBProj.sqlproj'
               action: 'publish'
               build-arguments: '-c Release'
               arguments: '/p:DropObjectsNotInSource=true'  # Optional: Customize as needed
