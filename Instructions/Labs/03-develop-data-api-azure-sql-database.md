@@ -178,7 +178,7 @@ Now we only need to test the Data API endpoint.
 1. On the Overview page, copy the URL of the web app.
 1. Open a new browser tab and paste the URL. You should still see the simple web page with the message **Vanilla JavaScript App**.
 1. Add **/data-api** to the end of the URL and press **Enter**. It should display **Healthy** to indicate that the Data API is working.
-1. Add **/data-api/Employees** to the end of the URL and press **Enter**. You should see the sample data you added to the Azure SQL Database earlier.
+1. Add **/data-api/rest/Employees** to the end of the URL and press **Enter**. You should see the sample data you added to the Azure SQL Database earlier.
 
 You have successfully developed and deployed a data API for an Azure SQL Database using Azure Static Web Apps.
 
