@@ -26,7 +26,7 @@ Before you can start this exercise, you need:
 First, you need to create a new Azure SQL Database.
 
 1. Sign in to the [Azure portal](https://portal.azure.com?azure-portal=true). 
-1. Navigate to the **Azure SQL** page, and then select **Create**.
+1. Navigate to the **Azure SQL** page, and then select **+ Create**.
 1. Select **SQL Database**, *Single database* and the **Create** button.
 1. Fill in the required information on the **Create SQL Database** dialog and select **OK**, leaving all other options at their default settings.
 
@@ -36,8 +36,8 @@ First, you need to create a new Azure SQL Database.
     | Subscription | Your subscription |
     | Resource group | *Select or create a new resource group* |
     | Database name | *MyDB* |
-    | Server | *Create a new server* |
-    | Server admin login | *Select a unique name* |
+    | Server | *Select the **Create new** link* |
+    | Server name | *Choose a unique name* |
     | Location | *Select a location* |
     | Authentication method | *Use SQL authentication* |
     | Server admin login | *sqladmin* |

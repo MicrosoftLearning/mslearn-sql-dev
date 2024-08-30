@@ -45,8 +45,8 @@ Visual Studio Code is now set up with the necessary extensions.
 
 If you haven't already done so, you need to create an Azure SQL Database.
 
-1. On the Azure portal, navigate to the **Azure SQL** page.
-1. Select **Create**.
+1. Sign in to the [Azure portal](https://portal.azure.com?azure-portal=true). 
+1. Navigate to the **Azure SQL** page, and then select **+ Create**.
 1. Select **SQL Database**, *Single database* and the **Create** button.
 1. Fill in the required information on the **Create SQL Database** dialog and select **OK** (leave all other options to their default).
 
@@ -55,22 +55,20 @@ If you haven't already done so, you need to create an Azure SQL Database.
     | Free serverless offer | *Apply offer* |
     | Subscription | Your subscription |
     | Resource group | *Select or create a new resource group* |
-    | Database name | *dp3020db03* |
-    | Server | *Create a new server* |
-    | Server admin login | *Select a unique name* |
+    | Database name | *MyDB* |
+    | Server | *Select the **Create new** link* |
+    | Server name | *Choose a unique name* |
     | Location | *Select a location* |
     | Authentication method | *Use SQL authentication* |
-    | Server admin login | *dp3020admin* |
+    | Server admin login | *sqladmin* |
     | Password | *Enter a password* |
     | Confirm password | *Confirm the password* |
 
-1. Select **Review + create** and then **Create**.
-1. Once the deployment is complete, navigate to the Azure SQL Database *server* you created.
-1. Go to the **Security** and then **Networking** settings and add your IP address to the firewall rules.
+1. Select **Review + create**, and then **Create**.
+1. After the deployment is complete, navigate to the Azure SQL Database *server* you created.
+1. Select **Networking** under **Security** on the left pane. Add your IP address to the firewall rules.
+1. Enable the System-assigned managed identity for the Azure SQL Database server under the **Security -> Identity** section.
 1. Select **Save**.
-1. Enable the System-assigned managed identity for the Azure SQL Database server under the Security->Identity section.
-
-You have successfully created an Azure SQL Database.
 
 ### Add Sample Data to the Database
 
@@ -101,11 +99,9 @@ Before we can create an Azure Static Web App, we need to create a basic web app 
 1. To create a basic web app in GitHub, go to the [generate a vanilla website](https://github.com/staticwebdev/vanilla-basic/generate).
 1. Make sure the Repostiory template is set to **staticwebdev/vanilla-basic**.
 1. Under ***Owner***, select your account.
-1. Under ***Repository name***, enter the name **dp3020ex03**.
+1. Under ***Repository name***, enter the name **my-sql-repo**.
 1. Make the repository **Private**.
 1. Select the **Create repository** button.
-
-We are now ready to create an Azure Static Web App.
 
 ## Create an Azure Static Web App
 
@@ -130,11 +126,9 @@ We will first create our static web app and then add the Data API Builder config
 1. Once it's deployed, go to the resource.
 1. Select the **Visit your site** button, you should see a simple web page with the message **Vanilla JavaScript App**. You can close this tab.
 
-It's time to add the Data API Builder configuration to the Azure Static Web App.
-
 ## Add Data API Builder configuration file
 
-We need to create a new file in the GitHub repository to add the Data API Builder configuration.
+It's time to add the Data API Builder configuration to the Azure Static Web App. We need to create a new file in the GitHub repository to add the Data API Builder configuration.
 
 1. In Visual Studio Code, clone the GitHub repository you created earlier.
 1. Open a terminal window in Visual Studio Code.
@@ -184,11 +178,10 @@ You have successfully developed and deployed a data API for an Azure SQL Databas
 
 ## Clean up
 
-After you have completed this exercise, you can delete the Azure resources you created to avoid incurring charges.
+When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. 
 
-1. Delete the Azure Static Web App.
-1. Delete the Azure SQL Database.
-1. Delete the resource group you created for this exercise.
-1. Delete the GitHub repository you created for this exercise.
-1. Uninstall the Visual Studio Code extensions you installed for this exercise.
-1. Remove the cloned GitHub repository from Visual Studio Code.
+Leaving resources running unnecessarily can result in extra costs. You can delete resources individually or delete the entire set of resources in the [Azure portal](https://portal.azure.com?azure-portal=true).
+
+## More information
+
+For more information about Data API builder for Azure SQL Databases, see [What is Data API builder for Azure Databases?](https://learn.microsoft.com/azure/data-api-builder/overview?azure-portal=true).
