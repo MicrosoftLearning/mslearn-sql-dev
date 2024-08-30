@@ -139,6 +139,17 @@ GitHub Actions enable you to automate, customize, and run your software developm
     az ad sp create-for-rbac --name "MyDBProj" --role contributor --scopes /subscriptions/<your_subscription_id>/resourceGroups/<your_resource_group_name>
     ```
 
+    The output should look similar to this:
+    
+    ```
+    {
+    "clientSecret": <your_service_principal_password>,
+    "subscriptionId": <your_subscription_id>,
+    "tenantId": <your_service_principal_tenant>,
+    "clientId": <your_service_principal_appId>
+    }
+    ```
+
 1. Copy the output to a text editor. We'll reference it in the next section.
 
 ### Add secrets to the repository
@@ -151,17 +162,6 @@ GitHub Actions enable you to automate, customize, and run your software developm
     | --- | --- |
     | AZURE_CREDENTIALS | The service principal output copied in the previous section.|
     | AZURE_CONN_STRING | Your connection string. |
-
-    Your Azure credentials should look similar to this:
-   
-   ```
-   {
-    "clientSecret": <your_service_principal_password>,
-    "subscriptionId": <your_subscription_id>,
-    "tenantId": <your_service_principal_tenant>,
-    "clientId": <your_service_principal_appId>
-    }
-   ```
    
     Your connection string should look similar to this:
 
