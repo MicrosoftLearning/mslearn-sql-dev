@@ -48,11 +48,11 @@ This step requires you to create a database in Azure:
 1. After the deployment finishes, navigate to the **Networking** section of your SQL Database and add your IP address to the firewall rules.
 1. Save your changes.
 
-### Clone the GitHub Repository
+### Clone the GitHub repository
 
 1. Open **Visual Studio Code**.
 
-1. Clone the GitHub Repo and Prepare Your Project
+1. Clone the GitHub Repo and prepare your project:
 
     1. In **Visual Studio Code**, open the **Command Palette** by pressing **Ctrl+Shift+P** (Windows) or **Cmd+Shift+P** (Mac).
     1. Type **Git: Clone** and select **Git: Clone**.
@@ -64,7 +64,7 @@ This step requires you to create a database in Azure:
 
     1. Choose the destination folder where you'd like to clone the repository.
 
-### Set Up Azure Blob Storage for JSON Data
+### Set Up Azure Blob Storage for JSON data
 
 We’ll now set up **Azure Blob Storage** to host the **employees.json** file. Follow these steps within the Azure portal and **Visual Studio Code**.
 
@@ -126,7 +126,7 @@ We should now have a secure URL to access the **employees.json** file, let's go 
     }
     ```
 
-### Import Data from Blob Storage to Azure SQL Database
+### Import data from the blob storage to Azure SQL Database
 
 We are now ready to import the data from the **employees.json** file hosted on Azure Blob Storage to our Azure SQL Database.
 
@@ -202,7 +202,7 @@ You should see the data from the **employees.json** file imported into the **emp
 
 In this part of the lab, you’ll create an Azure Function App in C# to export data from your Azure SQL Database. This function will retrieve the data and return it as a JSON response.
 
-### Create an Azure Function App in VS Code
+### Create an Azure Function App in Visual Studio Code
 
 Let's start by creating an Azure Function App in Visual Studio Code:
 
@@ -238,7 +238,7 @@ Let's start by creating an Azure Function App in Visual Studio Code:
     Replace the placeholders with your own values.
 
 
-### Create a new function in Visual Studio Code
+### Create a new function app in Visual Studio Code
 
 Let's create a new function in Visual Studio Code to export data from the Azure SQL Database:
 
@@ -256,7 +256,7 @@ You might need to add the Azure Functions extension to Visual Studio Code if you
 
 ### Write the C# code for exporting data
 
-1. The Azure Function App might need a couple of packages to be installed. You can install them by running the following commands:
+1. The Azure Function App might need a few packages to be installed first. You can install them by running the following commands:
 
     ```bash
     dotnet add package Microsoft.Data.SqlClient
@@ -354,7 +354,7 @@ You might need to add the Azure Functions extension to Visual Studio Code if you
     }
     ```
 
-    Replace the **connectionString** with the connection string to your Azure SQL Database.
+    Remember to replace the **connectionString** with the connection string to your Azure SQL Database.
 
     > **Note:** In a production environment, restrict access to only the necessary IP addresses. Additionally, consider using Managed Identities for your Azure Function App to access the database instead of SQL authentication. For more information, see the [Managed identities in Microsoft Entra for Azure SQL](https://learn.microsoft.com/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity?azure-portal=true).
 
@@ -378,7 +378,7 @@ Time to deploy the Azure Function App to Azure.
 
 1. Wait for the deployment to complete.
 
-### Test the Azure Function
+### Test the Azure Function App
 
 1. Once the deployment is complete, you can test the function by sending an HTTP request:
 
@@ -386,11 +386,11 @@ Time to deploy the Azure Function App to Azure.
     curl https://<your-function-app-name>.azurewebsites.net/api/ExportDataFunction
     ```
 
-1. The response should contain the exported data from your ***Employees*** table in JSON format.
+1. The response should contain the exported data from your ***employee_data*** table in JSON format.
 
 While this function is a simple example, you can extend it to include more complex logic and data processing, such as filtering, sorting, and aggregating data, and more.  Your code could also be extended to include error handling, logging, and security features.
 
-### Clean up resources
+### Clean up the resources
 
 After completing the lab, you can delete the resources created in this exercise to avoid incurring additional costs:
 
