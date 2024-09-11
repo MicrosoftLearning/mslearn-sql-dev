@@ -1,10 +1,10 @@
 ---
 lab:  
-    title: 'Import and Export Data for Development in Azure SQL Database'  
-    module: 'Import and Export Data for Development in Azure SQL Database'  
+    title: 'Import and export data for development in Azure SQL Database'  
+    module: 'Import and export data for development in Azure SQL Database'  
 ---
 
-# Import and Export Data for Development in Azure SQL Database
+# Import and export data for development in Azure SQL Database
 
 In this exercise, you will import data from an external REST endpoint (simulated using Azure Static Web App) and export data using an Azure Function. The lab will provide practical experience in working with Azure SQL Database for development purposes, focusing on integrating REST APIs and Azure Functions to handle data import/export operations.
 
@@ -198,9 +198,9 @@ You should see the data from the **employees.json** file imported into the **emp
 
 ---
 
-## Export data using an Azure Function
+## Export data using an Azure Function App
 
-In this part of the lab, you’ll create an Azure Function in C# to export data from your Azure SQL Database. This function will retrieve the data and return it as a JSON response.
+In this part of the lab, you’ll create an Azure Function App in C# to export data from your Azure SQL Database. This function will retrieve the data and return it as a JSON response.
 
 ### Create an Azure Function App in VS Code
 
@@ -364,9 +364,9 @@ You might need to add the Azure Functions extension to Visual Studio Code if you
     <PackageReference Include="Newtonsoft.Json" Version="13.X.X" />
     ```
 
-Time to deploy the Azure Function to Azure.
+Time to deploy the Azure Function App to Azure.
 
-### Deploy the Azure Function to Azure
+### Deploy the Azure Function App to Azure
 
 1. In the **Visual Studio Code** integrated terminal, run the following command to deploy the Azure Function to Azure:
 
@@ -388,7 +388,7 @@ Time to deploy the Azure Function to Azure.
 
 1. The response should contain the exported data from your ***Employees*** table in JSON format.
 
-While this function is a simple example, you can extend it to include more complex logic and data processing, such as filtering, sorting, storing and aggregating data, and more.
+While this function is a simple example, you can extend it to include more complex logic and data processing, such as filtering, sorting, and aggregating data, and more.  Your code could also be extended to include error handling, logging, and security features.
 
 ### Clean up resources
 
