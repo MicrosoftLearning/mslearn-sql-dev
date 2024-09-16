@@ -67,7 +67,6 @@ If you haven't already done so, you need to create an Azure SQL Database.
 1. Select **Review + create**, and then **Create**.
 1. After the deployment is complete, navigate to the Azure SQL Database *server* you created.
 1. Select **Networking** under **Security** on the left pane. Add your IP address to the firewall rules.
-1. Enable the System-assigned managed identity for the Azure SQL Database server under the **Security -> Identity** section.
 1. Select **Save**.
 
 ### Add Sample Data to the Database
@@ -159,9 +158,12 @@ It's time to add the Data API Builder configuration to the Azure Static Web App.
     | Setting | Value |
     | --- | --- |
     | Database Type | *Azure SQL Database* |
-    | Authentication Type | *System-assigned managed instance* |
+    | Authentication Type | *Connection String* |
+    | Username | *your admin user name* |
+    | Password | *the password you gave you admin user* |
     | Acknowledgement checkbox | *Checked* |
 
+   > **Note:** In a production environment, restrict access to only the necessary IP addresses. Additionally, consider using Managed Identities for your Static Web App to access the database instead of SQL authentication. For more information, see the [Managed identities in Microsoft Entra for Azure SQL](https://learn.microsoft.com/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity?azure-portal=true).
 1. Select **Link**.
 
 ## Test the Data API endpoint
