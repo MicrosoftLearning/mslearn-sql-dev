@@ -81,20 +81,6 @@ Next, you'll enable system-assigned managed identity for your Azure Web App, whi
 1. In the **Settings** on left-hand menu, select **Identity**.
 1. Under the **System assigned** tab, switch the **Status** to **On** and select **Save**. In case you receive a message asking if you want to enable system assigned managed identity for your Web App, select **Yes**.
 
-## Grant access to Azure SQL server
-
-Assigning the appropriate roles to your Azure SQL server is essential for managing access and permissions. You'll you grant the **SQL DB Contributor** role to your Web App’s managed identity. This role enables the Web App to perform actions such as managing databases and their entities on the SQL server. 
-
-1. Navigate to the Azure SQL server you created earlier.
-1. In the left-hand menu, select **Access control (IAM)**.
-1. Select **Add role assignment**.
-1. Select the role **SQL DB Contributor** and select **Next**.
-1. Under **Assign access to**, select **Managed identity**.
-1. On Members, select the **+ Select members** link 
-1. On **Select managed identities** side panel, select **App Service**, followed by your Web App name. 
-1. Confirm your selection to close the panel.
-1. Select **Review + assign**, and then **Review + assign** again. 
-
 ## Grant access to Azure SQL database
 
 1. Connect to the Azure SQL database using SQL Server Management Studio (SSMS) or Azure Data Studio. Select **Azure Active Directory - Universal with MFA** and provide your user name.
@@ -126,8 +112,9 @@ Next, you'll create a ASP.NET application that uses Entity Framework Core with A
     ```dos
     dotnet run
     ```
-    A new browser opens with your web application.
-1. Close the browser and stop the application.
+1. The terminal outputs *Now listening on: http://localhost:<port>*. Navigate to the URL in your web browser to access the application. 
+
+1. Close the web browser and stop the application. Alternatively, you can stop the application by pressing `Ctrl+C` in the VS Code terminal.
 
 ### Update your project to connect to Azure SQL Database
 
@@ -146,7 +133,7 @@ Next, you'll update some configurations that will allow you to successfully conn
       }
     }
     ```
-1. Close the file, your changes will save automatically.
+1. Save and close the file.
 
 ### Add your code
 
