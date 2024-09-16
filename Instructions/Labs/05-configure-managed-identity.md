@@ -124,12 +124,19 @@ Next, you'll update some configurations that will allow you to successfully conn
     ```dos
     dotnet add package Microsoft.EntityFrameworkCore.SqlServer
     ```
-1. Add your connection string in the *appsettings.json* file.
+1. In the root folder of your project, open the **appsettings.json** file and insert the `ConnectionStrings` section. Here, you'll replace `<server-name>` and `<db-name>` with the actual names of your server and database. This connection string is used by the default constructor in the `Models/MyDbContext.cs` file to establish a connection to your database.
 
-    ```dotnetcli
+    ```json
     {
+      "Logging": {
+        "LogLevel": {
+          "Default": "Information",
+          "Microsoft.AspNetCore": "Warning"
+        }
+      },
+      "AllowedHosts": "*",
       "ConnectionStrings": {
-        "DefaultConnection": "Server=your_server;Database=your_database;Authentication=Active Directory Default;"
+        "DefaultConnection": "Server=<server-name>.database.windows.net,1433;Initial Catalog=<db-name>;Authentication=Active Directory Default;"
       }
     }
     ```
@@ -137,10 +144,10 @@ Next, you'll update some configurations that will allow you to successfully conn
 
 ### Add your code
 
-1. On the **Models** folder of your project, create a **Product.cs** file for your product entity with the following code.
+1. On the **Models** folder of your project, create a **Product.cs** file for your product entity with the following code. Replace `<app name>` with the actual name of your application.
 
     ```csharp
-    namespace myapp.Models;
+    namespace <app name>.Models;
     
     public class Product
     {
@@ -151,10 +158,11 @@ Next, you'll update some configurations that will allow you to successfully conn
         public int? Stock { get; set; }
     }
     ```
-1. On the **Database** folder of your project, create a **MyDbContext.cs** file for your product entity with the following code.
+1. Create the folder **Database** on the root folder of your project.
+1. On the **Database** folder of your project, create a **MyDbContext.cs** file for your product entity with the following code. Replace `<app name>` with the actual name of your application.
 
     ```csharp
-    using myapp.Models;
+    using <app name>.Models;
     
     namespace myapp.Database;
     
@@ -174,9 +182,7 @@ Next, you'll update some configurations that will allow you to successfully conn
     ```csharp
     public IActionResult Index()
     {
-        // Read from the database :)
         var data = _context.Products.ToList();
-    
         return View(data);
     }
     ```
@@ -207,22 +213,7 @@ Next, you'll update some configurations that will allow you to successfully conn
         </tbody>
     </table>
     ```
-1. In the root folder of your project, open the **appsettings.json** file and insert the `ConnectionStrings` section. Here, you'll replace `<server-name>` and `<db-name>` with the actual names of your server and database. This connection string is used by the default constructor in the `Models/MyDbContext.cs` file to establish a connection to your database.
 
-    ```json
-    {
-      "Logging": {
-        "LogLevel": {
-          "Default": "Information",
-          "Microsoft.AspNetCore": "Warning"
-        }
-      },
-      "AllowedHosts": "*",
-      "ConnectionStrings": {
-        "DefaultConnection": "Server=<server-name>.database.windows.net,1433;Initial Catalog=<db-name>;Authentication=Active Directory Default;"
-      }
-    }
-    ```
 1. Edit the **Program.cs** file and insert the provided code snippet just above the `var app = builder.Build();` line. This change ensures the code executes during the application’s startup sequence.
 
     ```csharp
