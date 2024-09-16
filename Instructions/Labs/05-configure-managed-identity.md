@@ -4,7 +4,7 @@ lab:
     module: 'Explore Azure SQL Database safety practices for development'
 ---
 
-# Enable application resilience with auto-failover groups for Azure SQL Database
+# Configure managed identity for Azure SQL Database
 
 In this exercise, you'll add a managed identity to the sample web app without storing credentials in the code.
 
@@ -22,7 +22,10 @@ Before you can start this exercise, you need:
 
 ## Create a web application and an Azure SQL database
 
-1. Back to the Azure portal, select **Create a resource**.
+First, we'll create a web application and an Azure SQL database.
+
+1. Sign in to the [Azure portal](https://portal.azure.com?azure-portal=true).
+1. Select **Create a resource**.
 1. Search for **Web App + Database** and select it.
 1. Select **Create** and fill in the required details:
 
