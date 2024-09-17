@@ -155,7 +155,7 @@ Next, you'll update some configurations that will allow you to successfully conn
         public string ProductName { get; set; }
         public string Category { get; set; }
         public decimal Price { get; set; }
-        public int? Stock { get; set; }
+        public int Stock { get; set; }
     }
     ```
 1. Create the folder **Database** on the root folder of your project.
@@ -177,9 +177,15 @@ Next, you'll update some configurations that will allow you to successfully conn
         public DbSet<Product> Products { get; set; }
     }    
     ```
-1. On the **Controllers** folder of your project, edit the class `IActionResult` for the **HomeController.cs** file with the following code.
+1. On the **Controllers** folder of your project, edit the classes `HomeController` and `IActionResult` for the **HomeController.cs** file with the following code.
 
     ```csharp
+    public HomeController(ILogger<HomeController> logger, MyDbContext context)
+    {
+        _logger = logger;
+        _context = context;
+    }
+
     public IActionResult Index()
     {
         var data = _context.Products.ToList();
@@ -217,6 +223,13 @@ Next, you'll update some configurations that will allow you to successfully conn
 1. Edit the **Program.cs** file and insert the provided code snippet just above the `var app = builder.Build();` line. This change ensures the code executes during the application’s startup sequence.
 
     ```csharp
+    using Microsoft.EntityFrameworkCore;
+    using myapp.Database;
+
+    var builder = WebApplication.CreateBuilder(args);
+
+    // Add services to the container.
+    builder.Services.AddControllersWithViews();
     builder.Services.AddDbContext<MyDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
     ```
