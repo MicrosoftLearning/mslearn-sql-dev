@@ -133,7 +133,7 @@ We are now ready to import the data from the **employees.json** file hosted on A
 We need to start by creating a **Master Key** and a **Database Scoped Credential** in the Azure SQL Database.
 
 1. Connect to your Azure SQL Database using **SQL Server Management Studio** (SSMS) or **Azure Data Studio**.
-1. Run the following SQL command to create a master key if you don't already have one:
+1. Run the following SQL command to create a master key *if you don't already have one*:
 
     ```sql
     CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'YourStrongPassword!';
