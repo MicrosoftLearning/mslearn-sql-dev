@@ -45,7 +45,7 @@ This step requires you to create a database in Azure:
     | Service tier | Basic |
 
 1. Select **Review + Create**, then **Create**.
-1. After the deployment finishes, navigate to the **Networking** section of your SQL Database and add your IP address to the firewall rules.
+1. After the deployment finishes, navigate to the **Networking** section of your ***SQL Server*** (not SQL Database) and add your IP address to the firewall rules.
 1. Save your changes.
 
 ### Clone the GitHub repository
