@@ -215,7 +215,7 @@ Let's start by creating an Azure Function App in Visual Studio Code:
     az login
     ```
 
-1. Set the active subscription if you have multiple subscriptions:
+1. (Optional) If you have multiple subscriptions, set the active subscription:
 
     ```bash
     az account set --subscription <your-subscription-id>
