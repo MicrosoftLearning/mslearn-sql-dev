@@ -292,6 +292,7 @@ You might need to add the Azure Functions extension to Visual Studio Code if you
             ILogger log)
         {
             // Connection string to the database
+            // NOTE: REPLACE THIS CONNECTION STRING WITH THE CONNECTION STRING OF YOUR AZURE SQL DATABASE
             string connectionString = "Server=tcp:yourserver.database.windows.net;Database=DataLabDatabase;User ID=youruserid;Password=yourpassword;Encrypt=True;";
             
             // List to hold employee data
