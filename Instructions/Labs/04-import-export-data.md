@@ -48,8 +48,8 @@ This step requires you to create a database in Azure:
 1. After the deployment finishes, navigate to the **Networking** section of your ***Azure SQL Server*** (not the Azure SQL Database) and:
     1. Add your IP address to the firewall rules. This will allow you to use SQL Server Management Studio (SSMS) or Azure Data Studio for managing the database.
     1. Select the **Allow Azure services and resources to access this server** checkbox. This will allow the Azure Function App to access the database server.
+    1. Save your changes.
 1. Navigate to the **Microsoft Entra ID** section of your **Azure SQL Server** and make sure to *unselect* the **Support only Microsoft Entra authentication for this server** and **Save** your changes if selected. This example uses SQL Authentication, so we need to disable Entra only support.
-1. Save your changes.
 
 > [!NOTE]
 > In a production environment you will need to determine which type of access and from where you want to grant access to. While the function will have a slight change if you choose Entra authentication only, note that you will still need to enable the *Allow Azure services and resources to access this server* to allow the Azure Function App to access the server.
