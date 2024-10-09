@@ -235,7 +235,7 @@ Let's start by creating an Azure Function App in Visual Studio Code:
     
     ```
 
-    Replace the placeholders with your own values.
+    ***Replace the placeholders with your own values.***
 
 
 ### Create a new function app in Visual Studio Code
