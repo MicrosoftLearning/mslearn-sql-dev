@@ -45,7 +45,9 @@ This step requires you to create a database in Azure:
     | Service tier | Basic |
 
 1. Select **Review + Create**, then **Create**.
-1. After the deployment finishes, navigate to the **Networking** section of your ***SQL Server*** (not SQL Database) and add your IP address to the firewall rules.
+1. After the deployment finishes, navigate to the **Networking** section of your ***SQL Server*** (not the SQL Database) and:
+    1. Add your IP address to the firewall rules. This will allow you to use SQL Server Management Studio (SSMS) or Azure Data Studio for managing the database.
+    1. Select the **Allow Azure services and resources to access this server** checkbox. This will allow the Azure Function App to access the database server.
 1. Save your changes.
 
 ### Clone the GitHub repository
@@ -237,7 +239,7 @@ Let's start by creating an Azure Function App in Visual Studio Code:
     
     ```
 
-    ***Replace the placeholders with your own values.***
+    ***Replace the placeholders with your own values. Don't use the storage account name used for the json file, this script needs to create a new storage account to store the Azure Function App***.
 
 
 ### Create a new function app in Visual Studio Code
@@ -357,7 +359,7 @@ You might need to add the Azure Functions extension to Visual Studio Code if you
     }
     ```
 
-    Remember to replace the **connectionString** with the connection string to your Azure SQL Database.
+    *Remember to replace the **connectionString** with the connection string to your Azure SQL Database.*
 
     > **Note:** In a production environment, restrict access to only the necessary IP addresses. Additionally, consider using Managed Identities for your Azure Function App to access the database instead of SQL authentication. For more information, see the [Managed identities in Microsoft Entra for Azure SQL](https://learn.microsoft.com/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity?azure-portal=true).
 
@@ -381,12 +383,23 @@ Time to deploy the Azure Function App to Azure.
 
 1. Wait for the deployment to complete.
 
+### Get the Azure Function App URL
+
+1. Open the Azure portal and navigate to your Azure Function App.
+1. In the *Overview* section, under the *Function* tab, you will see your new function listed, select it.
+1. Under the **Code + Test** tab, select **Get function URL**.
+1. Copy the **default (Function key)**, we will need it shortly. The URL should look something like this:
+   
+   ```url
+   https://YourFunctionAppName.azurewebsites.net/api/ExportDataFunction?code=2pjO0HqRyz_13DHQg8ga-ysdDWbDU_eHdtlixbAHLVEGAzFuplomUg%3D%3D
+   ```
+
 ### Test the Azure Function App
 
-1. Once the deployment is complete, you can test the function by sending an HTTP request:
+1. Once the deployment is complete, you can test the function by sending an HTTP request from the Visual Studio Code terminal (replace the place holders with the name and key of your function app):
 
     ```bash
-    curl https://<your-function-app-name>.azurewebsites.net/api/ExportDataFunction
+    curl https://<your-function-app-name>.azurewebsites.net/api/ExportDataFunction?code=<the function key embedded to your function URL>
     ```
 
 1. The response should contain the exported data from your ***employee_data*** table in JSON format.
