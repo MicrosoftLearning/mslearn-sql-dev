@@ -63,10 +63,9 @@ This step requires you to create a database in Azure:
     1. In **Visual Studio Code**, open the **Command Palette** by pressing **Ctrl+Shift+P** (Windows) or **Cmd+Shift+P** (Mac).
     1. Type **Git: Clone** and select **Git: Clone**.
     1. In the prompt, enter the following URL to clone the repository:
-
-      ```bash
-      https://github.com/MicrosoftLearning/mslearn-sql-dev.git
-      ```
+        ```bash
+        https://github.com/MicrosoftLearning/mslearn-sql-dev.git
+        ```
 
     1. Choose the destination folder where you'd like to clone the repository.
 
