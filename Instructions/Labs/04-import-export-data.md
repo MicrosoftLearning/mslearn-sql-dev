@@ -227,6 +227,8 @@ Let's start by creating an Azure Function App in Visual Studio Code:
     $functionappname = "YourUniqueFunctionAppName"
     $resourcegroup = "YourResourceGroupName"
     $location = "YourLocation"
+    # NOTE - The following should be a new storage account name where your Azure function will resided.
+    # It should not be the same Storage Account name used to store the JSON file
     $storageaccount = "YourStorageAccountName"
 
     az storage account create --name $storageaccount --location $location --resource-group $resourcegroup --sku Standard_LRS
