@@ -16,7 +16,7 @@ Before starting this lab, ensure you have the following:
 - Basic knowledge of Azure SQL Database, REST APIs, and Azure Functions.
 - Visual Studio Code installed with the following extensions:
       - Azure Functions extension.
-- GitHub installed for cloning the repository.
+- Git installed for cloning the repository.
 - SQL Server Management Studio (SSMS) or Azure Data Studio for managing the database.
 
 ## Set up the environment
@@ -42,7 +42,6 @@ This step requires you to create a database in Azure:
     | Server admin login | **sqladmin** |
     | Password | Enter a secure password |
     | Confirm password | Confirm the password |
-    | Service tier | Basic |
 
 1. Select **Review + Create**, then **Create**.
 1. After the deployment finishes, navigate to the **Networking** section of your ***Azure SQL Server*** (not the Azure SQL Database) and:
@@ -362,7 +361,7 @@ You might need to add the Azure Functions extension to Visual Studio Code if you
     }
     ```
 
-    *Remember to replace the **connectionString** with the connection string to your Azure SQL Database.*
+    *Remember to replace the **connectionString** with the connection string to your Azure SQL Database and input your sqladmin password in the connection string as well.*
 
     > **Note:** In a production environment, restrict access to only the necessary IP addresses. Additionally, consider using Managed Identities for your Azure Function App to access the database instead of SQL authentication. For more information, see the [Managed identities in Microsoft Entra for Azure SQL](https://learn.microsoft.com/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity?azure-portal=true).
 
@@ -399,7 +398,7 @@ Time to deploy the Azure Function App to Azure.
 
 ### Test the Azure Function App
 
-1. Once the deployment is complete, you can test the function by sending an HTTP request from the Visual Studio Code terminal (replace the place holders with the name and key of your function app):
+1. Once the deployment is complete, you can test the function by sending an HTTP request to the Function key URL you copied earlier from the Visual Studio Code terminal:
 
     ```bash
     curl https://<your-function-app-name>.azurewebsites.net/api/ExportDataFunction?code=<the function key embedded to your function URL>
