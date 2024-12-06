@@ -123,7 +123,7 @@ We will first create our static web app and then add the Data API Builder config
 
 1. Select **Review + create** and then **Create**.
 1. Once it's deployed, go to the resource.
-1. Select the **Visit your site** button, you should see a simple web page with the message **Vanilla JavaScript App**. You can close this tab.
+1. Select the **View app in browser** button, you should see a simple web page with a welcome message. You can close this tab.
 
 ## Add Data API Builder configuration file
 
