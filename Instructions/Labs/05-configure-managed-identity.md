@@ -35,7 +35,7 @@ First, we'll create a web application and an Azure SQL database.
     | **Project Details** | **Resource group** | Select or create a new resource group |
     | **Project Details** | **Region** | Select the region where you want to host your web app |
     | **Web App Details** | **Name** | Enter a unique name for your web app |
-    | **Web App Details** | **Runtime stack** | Choose the appropriate runtime stack (for example, .NET, Node.js, Python) |
+    | **Web App Details** | **Runtime stack** | .NET 8 (LTS) |
     | **Database** | **Engine** | SQLAzure |
     | **Database** | **Server name** | Enter a unique name for your SQL server |
     | **Database** | **Database name** | Enter a unique name for your database |
