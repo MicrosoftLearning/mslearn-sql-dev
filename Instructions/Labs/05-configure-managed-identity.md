@@ -263,7 +263,7 @@ Run your web application and verify that it can connect to the Azure SQL Databas
 1. Type **Azure App Service: Configure Continuous Delivery...** and select it.
 1. Follow the prompts to set up continuous deployment from your GitHub repository or Azure DevOps.
 
-Consider the scenarios it be beneficial to use **User-Assigned Managed Identity** instead of **System-Assigned Managed Identity**.
+Consider the scenarios where it would be beneficial to use **User-Assigned Managed Identity** instead of **System-Assigned Managed Identity**.
 
 ## Clean up
 
