@@ -78,12 +78,13 @@ To connect your .NET application to the Azure SQL Database endpoint, you’ll ne
 
 1. Open the **Cloud Shell** terminal and run the following commands to install the `Microsoft.Data.SqlClient` package and create a new .NET console application.
 
-    ```powershell
+    ```bash
+    dotnet new console -n AdventureWorksLTApp
+    cd AdventureWorksLTApp 
     dotnet add package Microsoft.Data.SqlClient --version 5.2.1
-    dotnet new console -n AdventureWorksLTApp 
     ```
 
-1. Navigate to the `AdventureWorksLTApp` folder that was created with the previous step, and open it in **Visual Studio Code**.
+1. Open the `AdventureWorksLTApp` folder that was created with the previous step in **Visual Studio Code**.
 
 1. Create an `appsettings.json` file in the root of your project directory. This configuration file will store your database connection string. Be sure to replace the `<your_failover_group>` and `<your_password>` values in the connection string with your actual details.
 

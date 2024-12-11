@@ -37,7 +37,7 @@ First, we'll create a web application and an Azure SQL database.
     | **Project Details** | **Resource group** | Select or create a new resource group |
     | **Project Details** | **Region** | Select the region where you want to host your web app |
     | **Web App Details** | **Name** | Enter a unique name for your web app |
-    | **Web App Details** | **Runtime stack** | Choose the appropriate runtime stack (for example, .NET, Node.js, Python) |
+    | **Web App Details** | **Runtime stack** | .NET 8 (LTS) |
     | **Database** | **Engine** | SQLAzure |
     | **Database** | **Server name** | Enter a unique name for your SQL server |
     | **Database** | **Database name** | Enter a unique name for your database |
@@ -46,7 +46,7 @@ First, we'll create a web application and an Azure SQL database.
     > **Note:** For production workloads, select **Standard - General purpose production apps**. Username and password of the new database are generated automatically. To retrieve these values after the deployment, go to the **Connection strings** located on **Environment variables** page of your app. 
 
 1. Select **Review + create** and then **Create**. It might take a few minutes to the deployment to complete.
-1. Connect to your database in SQL Server Managed Studio and run the following code.
+1. Connect to your database in Azure Data Studio and run the following code.
 
     ```sql
     CREATE TABLE Products (
@@ -85,7 +85,7 @@ Next, you'll enable system-assigned managed identity for your Azure Web App, whi
 
 ## Grant access to Azure SQL database
 
-1. Connect to the Azure SQL database using SQL Server Management Studio (SSMS) or Azure Data Studio. Select **Azure Active Directory - Universal with MFA** and provide your user name.
+1. Connect to the Azure SQL database using Azure Data Studio. Select **Microsoft Entra ID - Universal with MFA support** and provide your user name.
 1. Select your database, and then open a new query editor.
 1. Execute the following SQL commands to create a user for the managed identity and assign the necessary permissions. Edit the script by providing your Web App name.
 
@@ -182,6 +182,7 @@ Next, you'll update some configurations that will allow you to successfully conn
 1. On the **Controllers** folder of your project, edit the classes `HomeController` and `IActionResult` for the **HomeController.cs** file with the following code.
 
     ```csharp
+    private MyDbContext _context
     public HomeController(ILogger<HomeController> logger, MyDbContext context)
     {
         _logger = logger;

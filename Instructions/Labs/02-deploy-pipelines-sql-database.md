@@ -121,7 +121,7 @@ With the Azure SQL Database project created and the table script added to the pr
 Now that you have pushed the changes, let's verify them in the GitHub repository.
 
 1. Open the [GitHub](https://github.com) website.
-1. Navigate to the **MyDBProj** repository.
+1. Navigate to the **my-sql-db-repo** repository.
 1. On the **<> Code** tab, open the **MyDBProj** folder.
 1. Check if the changes in the **Employees.sql** file are up to date.
 
@@ -133,24 +133,24 @@ GitHub Actions enable you to automate, customize, and run your software developm
 
 1. Select the **Cloud Shell** icon in the top-right corner of the Azure portal. It looks like a `>_` symbol. If prompted, choose **Bash** as the shell type.
 
-1. Run the following command in the Cloud Shell terminal. Replace the values `<your_subscription_id>`, and `<your_resource_group_name>` with your actual values. You can get these values on the **Resource group** page on Azure portal.
+1. Run the following command in the Cloud Shell terminal. Replace the values `<your_subscription_id>`, and `<your_resource_group_name>` with your actual values. You can get these values on the **Subscriptions** and **Resource groups** pages on Azure portal.
 
     ```azurecli
     az ad sp create-for-rbac --name "MyDBProj" --role contributor --scopes /subscriptions/<your_subscription_id>/resourceGroups/<your_resource_group_name>
     ```
 
-    The output should look similar to this:
+    Open a text editor and use the output from the previous command to create a credentials snippet similar to this:
     
     ```
     {
+    "clientId": <your_service_principal_appId>,
     "clientSecret": <your_service_principal_password>,
-    "subscriptionId": <your_subscription_id>,
     "tenantId": <your_service_principal_tenant>,
-    "clientId": <your_service_principal_appId>
+    "subscriptionId": <your_subscription_id>
     }
     ```
 
-1. Copy the output to a text editor. We'll reference it in the next section.
+1. Leave the text editor open. We'll reference it in the next section.
 
 ### Add secrets to the repository
 
@@ -208,8 +208,7 @@ GitHub Actions enable you to automate, customize, and run your software developm
 
       The **Build and Deploy SQL Project** step in your YAML file connects to your Azure SQL Database using the connection string stored in the `AZURE_CONN_STRING` secret. The action specifies the path to your SQL project file, sets the action to publish to deploy the project, and includes build arguments to compile in Release mode. Additionally, it uses the `/p:DropObjectsNotInSource=true` argument to ensure that any objects not present in the source are dropped from the target database during deployment.
 
-1. Select the **Commit changes** button.
-1. Select **Commit directly to the main branch**, and then **Commit changes** again.
+1. Commit the changes.
 
 ### Test the GitHub Actions workflow
 
