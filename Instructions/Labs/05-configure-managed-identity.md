@@ -25,7 +25,9 @@ Before you can start this exercise, you need:
 First, we'll create a web application and an Azure SQL database.
 
 1. Sign in to the [Azure portal](https://portal.azure.com?azure-portal=true).
-1. Select **Create a resource**.
+1. Search for **Subscriptions** and select it.
+1. Navigate to **Resource providers** under **Settings**, search for the **Microsoft.Sql** provider, and select **Register**.
+1. Back to the main page of Azure portal, select **Create a resource**.
 1. Search for **Web App + Database** and select it.
 1. Select **Create** and fill in the required details:
 
