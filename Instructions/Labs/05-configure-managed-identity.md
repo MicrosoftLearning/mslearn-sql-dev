@@ -166,7 +166,7 @@ Next, you'll update some configurations that will allow you to successfully conn
     ```csharp
     using <app name>.Models;
     
-    namespace myapp.Database;
+    namespace <app name>.Database;
     
     using Microsoft.EntityFrameworkCore;
     
@@ -179,10 +179,11 @@ Next, you'll update some configurations that will allow you to successfully conn
         public DbSet<Product> Products { get; set; }
     }    
     ```
-1. On the **Controllers** folder of your project, edit the classes `HomeController` and `IActionResult` for the **HomeController.cs** file with the following code.
+1. On the **Controllers** folder of your project, edit the classes `HomeController` and `IActionResult` for the **HomeController.cs** file, and add the `_context` variable with the following code.
 
     ```csharp
-    private MyDbContext _context
+    private MyDbContext _context;
+
     public HomeController(ILogger<HomeController> logger, MyDbContext context)
     {
         _logger = logger;
@@ -223,11 +224,11 @@ Next, you'll update some configurations that will allow you to successfully conn
     </table>
     ```
 
-1. Edit the **Program.cs** file and insert the provided code snippet just above the `var app = builder.Build();` line. This change ensures the code executes during the application’s startup sequence.
+1. Edit the **Program.cs** file and insert the provided code snippet just above the `var app = builder.Build();` line. This change ensures the code executes during the application’s startup sequence. Replace `<app name>` with the actual name of your application.
 
     ```csharp
     using Microsoft.EntityFrameworkCore;
-    using myapp.Database;
+    using <app name>.Database;
 
     var builder = WebApplication.CreateBuilder(args);
 
