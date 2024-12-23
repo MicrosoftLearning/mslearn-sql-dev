@@ -76,7 +76,7 @@ Next, you’ll create an auto-failover group for the Azure SQL Database you prev
 
 To connect your .NET application to the Azure SQL Database endpoint, you’ll need to follow these steps.
 
-1. Open the **Cloud Shell** terminal and run the following commands to install the `Microsoft.Data.SqlClient` package and create a new .NET console application.
+1. Open the terminal and run the following commands to install the `Microsoft.Data.SqlClient` package and create a new .NET console application.
 
     ```bash
     dotnet new console -n AdventureWorksLTApp
