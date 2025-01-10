@@ -88,13 +88,13 @@ To connect your .NET application to the Azure SQL Database endpoint, you’ll ne
 
 1. Create an `appsettings.json` file in the root of your project directory. This configuration file will store your database connection string. Be sure to replace the `<your_failover_group>` and `<your_password>` values in the connection string with your actual details.
 
-```json
-{
-  "ConnectionStrings": {
-    "FailoverGroupConnection": "Server=tcp:<your_failover_group>.database.windows.net,1433;Initial Catalog=AdventureWorksLT;Persist Security Info=False;User ID=sqladmin;Password=<your_password>;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
-  }
-}
-```
+    ```json
+    {
+      "ConnectionStrings": {
+        "FailoverGroupConnection": "Server=tcp:<your_failover_group>.database.windows.net,1433;Initial Catalog=AdventureWorksLT;Persist Security Info=False;User ID=sqladmin;Password=<your_password>;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+      }
+    }
+    ```
 
 1. Open the `.csproj` file in **Visual Studio Code** and add the following content right below the `</PropertyGroup>` tag.
 
