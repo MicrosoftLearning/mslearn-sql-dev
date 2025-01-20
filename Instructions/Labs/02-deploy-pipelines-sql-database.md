@@ -189,6 +189,10 @@ GitHub Actions enable you to automate, customize, and run your software developm
         steps:
           - name: Checkout repository
             uses: actions/checkout@v3
+
+        # Install the SQLpackage tool
+          - name: sqlpack install
+            run: dotnet tool install -g microsoft.sqlpackage
     
           - name: Login to Azure
             uses: azure/login@v1
