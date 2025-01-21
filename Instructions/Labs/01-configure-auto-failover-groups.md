@@ -26,22 +26,33 @@ First, we'll set up both primary and secondary servers, and we'll use the **Adve
 
 1. Select the Cloud Shell icon in the top-right corner of the Azure portal. It looks like a `>_` symbol. If prompted, choose **Bash** as the shell type.
 
-1. Run the following commands in the Cloud Shell terminal. Replace the values `<your_resource_group>`, `<your_primary_server>`, `<your_location>`, `your_secondary_server`, and `<your_admin_password>` with your actual values.
+1. Run the following commands in the Cloud Shell terminal. Replace the values `<your_resource_group>`, `<your_primary_server>`, `<your_location>`, `<your_secondary_server>`, and `<your_admin_password>` with your actual values:
 
+    * Create a resource group
     ```azurecli
-    # Create a resource group
     az group create --name <your_resource_group> --location <your_location>
-        
-    # Create the primary SQL server
-    az sql server create --name <your_primary_server> --resource-group <your_resource_group> --location <your_location> --admin-user "sqladmin" --admin-password <your_admin_password>
-        
-    # Create the secondary SQL server. Same script, only change the server name and location
-    az sql server create --name <your_secondary_server> --resource-group <your_resource_group> --location <your_location> --admin-user "sqladmin" --admin-password <your_admin_password>
-        
-    # Create a sample database on the primary server with the specified pricing tier
-    az sql db create --resource-group <your_resource_group> --server <your_primary_server> --name AdventureWorksLT --sample-name AdventureWorksLT --service-objective "S0"
-    
     ```
+
+    * Create the primary SQL server
+    ```azurecli        
+    az sql server create --name <your_primary_server> --resource-group <your_resource_group> --location <your_location> --admin-user "sqladmin" --admin-password <your_admin_password>
+    ```
+
+    * Create the secondary SQL server. Same script, only change the server name and location
+    ```azurecli
+    az sql server create --name <your_secondary_server> --resource-group <your_resource_group> --location <your_location> --admin-user "sqladmin" --admin-password <your_admin_password>    
+    ```
+
+    * Create a sample database on the primary server with the specified pricing tier
+    ```azurecli
+    az sql db create --resource-group <your_resource_group> --server <your_primary_server> --name AdventureWorksLT --sample-name AdventureWorksLT --service-objective "S0"    
+    ```
+    
+1. After the deployments are complete, navigate to the primary Azure SQL server you created.
+1. Select **Networking** under **Security** on the left pane. Add your IP address to the firewall rules.
+1. Select the **Allow Azure services and resources to access this server** option.
+1. Select **Save**.
+1. Repeat the steps above for the secondary server.
 
     These steps ensure that you have a structured and redundant Azure SQL Database environment ready for use.
 
@@ -49,25 +60,18 @@ First, we'll set up both primary and secondary servers, and we'll use the **Adve
 
 Next, you’ll create an auto-failover group for the Azure SQL Database you previously set up. This involves establishing a failover group between two servers, and verifying the setup to ensure it's working properly.
 
-1. Run the following commands on the Cloud Shell terminal. Replace the values `<your_failover_group>`, `<your_resource_group>`, `<your_primary_server>`, and `<your_secondary_server>` with your actual values.
+1. Run the following commands on the Cloud Shell terminal. Replace the values `<your_failover_group>`, `<your_resource_group>`, `<your_primary_server>`, and `<your_secondary_server>` with your actual values:
+
+    * Create the failover group
     ```azurecli
-    # Create the failover group
-    az sql failover-group create \
-        --name <your_failover_group> \
-        --resource-group <your_resource_group> \
-        --server <your_primary_server> \
-        --partner-server <your_secondary_server> \
-        --failover-policy Automatic \
-        --grace-period 1 \
-        --add-db AdventureWorksLT
-    
-    # Verify the failover group
-    az sql failover-group show \
-        --name <your_failover_group> \
-        --resource-group <your_resource_group> \
-        --server <your_primary_server>
+    az sql failover-group create -n <your_failover_group> -g <your_resource_group> -s <your_primary_server> --partner-server <your_secondary_server> --failover-policy Automatic --grace-period 1 --add-db AdventureWorksLT
     ```
-    
+
+    * Verify the failover group
+    ```azurecli    
+    az sql failover-group show -n <your_failover_group> -g <your_resource_group> -s <your_primary_server>
+    ```
+
     > Take a moment to review the results and the `partnerServers` values. Why is this important?
 
     > By checking the `role` attribute within each partner server, you can determine whether a server is currently acting as the primary or secondary. This information is crucial for understanding the current configuration and readiness of the failover group. It helps you assess the potential impact on your application during failover scenarios and ensures that your setup is correctly configured for high availability and disaster recovery.
@@ -76,7 +80,7 @@ Next, you’ll create an auto-failover group for the Azure SQL Database you prev
 
 To connect your .NET application to the Azure SQL Database endpoint, you’ll need to follow these steps.
 
-1. Open the terminal and run the following commands to install the `Microsoft.Data.SqlClient` package and create a new .NET console application.
+1. In Visual Studio Code, open the terminal and run the following commands to install the `Microsoft.Data.SqlClient` package and create a new .NET console application.
 
     ```bash
     dotnet new console -n AdventureWorksLTApp
@@ -197,7 +201,7 @@ To connect your .NET application to the Azure SQL Database endpoint, you’ll ne
     }
     ```
 
-1. Run the code by selecting **Run** > **Start Debugging** from the menu, or simply press **F5**. You can also select the green play button in the top toolbar to start the application.
+1. Run the code by selecting **Run** > **Start Debugging** from the menu, or simply press **F5**. You can also select the play button in the top toolbar to start the application.
 
     > **Important:** If you receive a message *"You don't have an extension for debugging C#. Should we find a C# extension in the Marketplace?"*, ensure that the **C# Dev Kit** extension is installed.
 
@@ -223,7 +227,7 @@ Let’s initiate a failover and run our application to check the status of our p
 1. Go back to Azure portal, open a new instance of Cloud Shell terminal. Run the following code. Replace the values `<your_failover_group>`, `<your_resource_group>`, and `<your_primary_server>` with your actual values. The `--server` parameter value should be the current secondary.
 
     ```azurecli
-    az sql failover-group set-primary --name <your_failover_group> --resource-group <your_resource_group> --server <your_primary_server>
+    az sql failover-group set-primary --name <your_failover_group> --resource-group <your_resource_group> --server <your_server_name>
     ```
 
     > **Note**:  This operation might take a few minutes.
