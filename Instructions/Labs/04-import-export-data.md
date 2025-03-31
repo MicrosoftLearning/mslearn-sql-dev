@@ -151,7 +151,7 @@ We need to start by creating a **Master Key** and a **Database Scoped Credential
     SECRET = '<your-sas-token>';
     ```
 
-    Replace ***<your-sas-token>*** with the **Blob SAS token** generated earlier.
+    Replace <your-sas-token> with the Blob SAS token generated earlier.
 
 1. Finally you need a **Data Source** to access the Azure Blob Storage. Run the following SQL command to create a **Data Source**:
 
@@ -164,7 +164,7 @@ We need to start by creating a **Master Key** and a **Database Scoped Credential
     );
     ```
 
-    Replace ***<your-storage-account-name>*** with the name of your Azure Storage Account.
+    Replace <your-storage-account-name> with the name of your Azure Storage Account.
 
 Everything is now set up to import the data from the **employees.json** file into the *Azure SQL Database*.
 
