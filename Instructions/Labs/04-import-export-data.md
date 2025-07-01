@@ -35,13 +35,15 @@ This step requires you to create a database in Azure:
     |---|---|
     | Free serverless offer | Apply offer |
     | Subscription | Your subscription |
-    | Resource group | Select or create a new resource group |
+    | Resource group | *Select or create a new resource group* |
     | Database name | **MyDB** |
-    | Server | Select or create a new server |
+    | Server | *Select the **Create new** link* |
+    | Server name | *Choose a unique name* |
+    | Location | *Select a location* |
     | Authentication method | SQL authentication |
     | Server admin login | **sqladmin** |
-    | Password | Enter a secure password |
-    | Confirm password | Confirm the password |
+    | Password | *Enter a secure password* |
+    | Confirm password | *Confirm the password* |
 
 1. Select **Review + Create**, then **Create**.
 1. After the deployment finishes, navigate to the **Networking** section of your ***Azure SQL Server*** (not the Azure SQL Database) and:
