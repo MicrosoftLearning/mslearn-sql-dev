@@ -27,6 +27,7 @@ Let’s begin by setting up the necessary resources for this lab, including an A
 
 This step requires you to create a database in Azure:
 
+1. Sign in to the [Azure portal](https://portal.azure.com?azure-portal=true).
 1. In the Azure portal, go to the **SQL Databases** page.
 1. Select **Create**.
 1. Fill out the required fields:
@@ -35,20 +36,21 @@ This step requires you to create a database in Azure:
     |---|---|
     | Free serverless offer | Apply offer |
     | Subscription | Your subscription |
-    | Resource group | Select or create a new resource group |
+    | Resource group | *Select or create a new resource group* |
     | Database name | **MyDB** |
-    | Server | Select or create a new server |
+    | Server | *Select the **Create new** link* |
+    | Server name | *Choose a unique name* |
+    | Location | *Select a location* |
     | Authentication method | SQL authentication |
     | Server admin login | **sqladmin** |
-    | Password | Enter a secure password |
-    | Confirm password | Confirm the password |
+    | Password | *Enter a secure password* |
+    | Confirm password | *Confirm the password* |
 
 1. Select **Review + Create**, then **Create**.
 1. After the deployment finishes, navigate to the **Networking** section of your ***Azure SQL Server*** (not the Azure SQL Database) and:
     1. Add your IP address to the firewall rules. This will allow you to use SQL Server Management Studio (SSMS) or Azure Data Studio for managing the database.
     1. Select the **Allow Azure services and resources to access this server** checkbox. This will allow the Azure Function App to access the database server.
     1. Save your changes.
-1. Navigate to the **Microsoft Entra ID** section of your **Azure SQL Server** and make sure to *unselect* the **Support only Microsoft Entra authentication for this server** and **Save** your changes if selected. This example uses SQL Authentication, so we need to disable Entra only support.
 
 > [!NOTE]
 > In a production environment you will need to determine which type of access and from where you want to grant access to. While the function will have a slight change if you choose Entra authentication only, note that you will still need to enable the *Allow Azure services and resources to access this server* to allow the Azure Function App to access the server.
@@ -231,7 +233,7 @@ Let's start by creating an Azure Function App in Visual Studio Code:
     $functionappname = "YourUniqueFunctionAppName"
     $resourcegroup = "YourResourceGroupName"
     $location = "YourLocation"
-    # NOTE - The following should be a new storage account name where your Azure function will resided.
+    # NOTE - The following should be a new storage account name where your Azure function will reside.
     # It should not be the same Storage Account name used to store the JSON file
     $storageaccount = "YourStorageAccountName"
 
