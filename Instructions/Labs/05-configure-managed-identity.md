@@ -17,6 +17,7 @@ This exercise should take approximately **30** minutes to complete.
 Before you can start this exercise, you need:
 
 - An Azure subscription with appropriate permissions to create and manage resources.
+- [**SQL Server Management Studio (SSMS)**](https://learn.microsoft.com/en-us/ssms/install/install) installed on your computer.
 - [**Visual Studio Code**](https://code.visualstudio.com/download?azure-portal=true) installed on your computer with the following extension installed:
     - [Azure App Service](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice?azure-portal=true).
 
@@ -28,26 +29,29 @@ First, we'll create a web application and an Azure SQL database.
 1. Search for **Subscriptions** and select it.
 1. Navigate to **Resource providers** under **Settings**, search for the **Microsoft.Sql** provider, and select **Register**.
 1. Back to the main page of Azure portal, select **Create a resource**.
-1. Search for **Web App + Database** and select it.
+1. Search for **Web App** and select it.
 1. Select **Create** and fill in the required details:
 
     | Group | Setting | Value |
     | --- | --- | --- |
     | **Project Details** | **Subscription** | Select your Azure subscription. |
     | **Project Details** | **Resource group** | Select or create a new resource group |
-    | **Project Details** | **Region** | Select the region where you want to host your web app |
-    | **Web App Details** | **Name** | Enter a unique name for your web app |
-    | **Web App Details** | **Runtime stack** | .NET 8 (LTS) |
+    | **Instance Details** | **Name** | Enter a unique name for your web app |
+    | **Instance Details** | **Runtime stack** | .NET 8 (LTS) |
+    | **Instance Details** | **Region** | Select the region where you want to host your web app |
+    | **Pricing plans** | **Pricing plan** | Basic |
     | **Database** | **Engine** | SQLAzure |
     | **Database** | **Server name** | Enter a unique name for your SQL server |
     | **Database** | **Database name** | Enter a unique name for your database |
-    | **Hosting** | **Hosting plan** | Basic |
+    
 
     > **Note:** For production workloads, select **Standard - General purpose production apps**. Username and password of the new database are generated automatically. To retrieve these values after the deployment, go to the **Connection strings** located on **Environment variables** page of your app. 
 
 1. Select **Review + create** and then **Create**. It might take a few minutes to the deployment to complete.
-1. Connect to your database in Azure Data Studio and run the following code.
+1. Connect to your database in SSMS and run the following code:
 
+    >**Tip**: You can get the user ID and password assigned to your server by checking the connection string in the Service Connector page of your web app resource
+ 
     ```sql
     CREATE TABLE Products (
         ProductID INT PRIMARY KEY,
@@ -85,7 +89,7 @@ Next, you'll enable system-assigned managed identity for your Azure Web App, whi
 
 ## Grant access to Azure SQL database
 
-1. Connect to the Azure SQL database using Azure Data Studio. Select **Microsoft Entra ID - Universal with MFA support** and provide your user name.
+1. Connect to the Azure SQL database again using SSMS. Select **Microsoft Entra MFA** and provide your user name.
 1. Select your database, and then open a new query editor.
 1. Execute the following SQL commands to create a user for the managed identity and assign the necessary permissions. Edit the script by providing your Web App name.
 
@@ -105,14 +109,14 @@ Next, you'll create a ASP.NET application that uses Entity Framework Core with A
 1. Open the terminal and run the following command to create your new MVC project.
     
     ```dos
-        dotnet new mvc
+   dotnet new mvc
     ```
     This will create a new ASP.NET MVC project in the folder you chose and load it in Visual Studio Code.
 
 1. Run the following command to execute your application. 
 
     ```dos
-    dotnet run
+   dotnet run
     ```
 1. The terminal outputs *Now listening on: http://localhost:<port>*. Navigate to the URL in your web browser to access the application. 
 
@@ -196,6 +200,8 @@ Next, you'll update some configurations that will allow you to successfully conn
         return View(data);
     }
     ```
+
+1. Also add `using.<app name>.Database` to the top of the file.
 1. On the **Views -> Home** folder of your project, update the **Index.cshtml** file, and add the following code.
 
     ```html
