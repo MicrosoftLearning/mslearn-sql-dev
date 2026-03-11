@@ -1,7 +1,15 @@
 ---
 lab:
-    title: 'Configure managed identity for Azure SQL Database'
-    module: 'Explore Azure SQL Database safety practices for development'
+  title: Configure managed identity for Azure SQL Database
+  module: Explore Azure SQL Database safety practices for development
+  description: In this exercise, you'll add a managed identity to the sample web app
+    without storing credentials in the code.
+  duration: 30 minutes
+  level: 300
+  islab: true
+  primarytopics:
+  - Azure
+  - Azure SQL Database
 ---
 
 # Configure managed identity for Azure SQL Database
