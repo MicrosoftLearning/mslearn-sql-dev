@@ -1,7 +1,17 @@
 ---
 lab:
-    title: 'Enable application resilience with auto-failover groups for Azure SQL Database'
-    module: 'Get started with Azure SQL Database for cloud-native application development'
+  title: Enable application resilience with auto-failover groups for Azure SQL Database
+  module: Get started with Azure SQL Database for cloud-native application development
+  description: In this exercise you’ll create two Azure SQL databases that will act
+    as primary and secondary. You'll configure auto-failover groups to ensure high
+    availability and disaster recovery of your application databases, and validate
+    the replication status on your application.
+  duration: 30 minutes
+  level: 300
+  islab: true
+  primarytopics:
+  - Azure
+  - Azure SQL Database
 ---
 
 # Enable application resilience with auto-failover groups for Azure SQL Database
