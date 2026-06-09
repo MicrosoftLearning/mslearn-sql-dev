@@ -1,15 +1,13 @@
 ---
 lab:
-  title: Import and export data for development in Azure SQL Database
+  title: 'Import and export data for development in Azure SQL Database'
   module: Import and export data for development in Azure SQL Database
-  description: In this exercise, you will import data from an external REST endpoint (simulated using Azure Static Web App) and export data using an Azure Function. The lab will provide practical experience in working with Azure SQL Database for development purposes, focusing on integrating REST APIs and Azure Functions to handle data import/export operations.
-  duration: 45 minutes
-  level: 400
-  islab: true
-  primarytopics:
-    - Azure
-    - Azure Functions
-    - Azure SQL Database
+  description: 'In this exercise, you will import data from an external REST endpoint (simulated using Azure Static Web App) and export data using an Azure Function. The lab will provide practical experience in working with Azure SQL Database for development purposes, focusing on integrating REST APIs and Azure Functions to handle data import/export operations.'
+  duration: 45 # duration in minutes
+  level: 300 # 100 basic concepts, 200 foundations, 300 practical usage, 400 advanced scenarios, 500 expert design
+  islab: true # if this is not a lab that should be listed in the catalog, set to false
+  status: 'released' # in-development or released
+  targetDate: 2099-01-01 # Set to the future date when you expect an in-development lab to be released
 ---
 
 # Import and export data for development in Azure SQL Database

@@ -1,16 +1,13 @@
 ---
 lab:
-  title: Configure managed identity for Azure SQL Database
+  title: 'Configure managed identity for Azure SQL Database'
   module: Explore Azure SQL Database safety practices for development
-  description: Next, you'll add your account access to the database. This is needed because only accounts authenticated through Microsoft Entra can create other Microsoft Entra ID users which are a prerequisite for the subsequent steps in this exercise.
-  duration: 30 minutes
-  level: 300
-  islab: true
-  primarytopics:
-    - Azure
-    - Azure SQL Database
-    - Microsoft Entra
-    - Microsoft Entra ID
+  description: 'Next, you''ll add your account access to the database. This is needed because only accounts authenticated through Microsoft Entra can create other Microsoft Entra ID users which are a prerequisite for the subsequent steps in this exercise.'
+  duration: 30 # duration in minutes
+  level: 300 # 100 basic concepts, 200 foundations, 300 practical usage, 400 advanced scenarios, 500 expert design
+  islab: true # if this is not a lab that should be listed in the catalog, set to false
+  status: 'released' # in-development or released
+  targetDate: 2099-01-01 # Set to the future date when you expect an in-development lab to be released
 ---
 
 # Configure managed identity for Azure SQL Database

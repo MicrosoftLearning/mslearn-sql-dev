@@ -1,17 +1,13 @@
 ---
 lab:
-  title: Configure and Deploy CI/CD Pipelines for Azure SQL Database Projects
+  title: 'Configure and Deploy CI/CD Pipelines for Azure SQL Database Projects'
   module: Develop for an Azure SQL Database
-  description: In this exercise you'll create, configure, and deploy CI/CD pipelines for Azure SQL Database projects using Visual Studio Code and GitHub Actions. This allows you to familiarize yourself with the process of setting up CI/CD pipelines for Azure SQL Database projects.
-  duration: 30 minutes
-  level: 500
-  islab: true
-  primarytopics:
-    - Azure
-    - Azure SQL Database
-    - GitHub
-    - Visual Studio
-    - Visual Studio Code
+  description: 'In this exercise you''ll create, configure, and deploy CI/CD pipelines for Azure SQL Database projects using Visual Studio Code and GitHub Actions. This allows you to familiarize yourself with the process of setting up CI/CD pipelines for Azure SQL Database projects.'
+  duration: 30 # duration in minutes
+  level: 500 # 100 basic concepts, 200 foundations, 300 practical usage, 400 advanced scenarios, 500 expert design
+  islab: true # if this is not a lab that should be listed in the catalog, set to false
+  status: 'released' # in-development or released
+  targetDate: 2099-01-01 # Set to the future date when you expect an in-development lab to be released
 ---
 
 # Configure and deploy CI/CD pipelines for Azure SQL Database projects

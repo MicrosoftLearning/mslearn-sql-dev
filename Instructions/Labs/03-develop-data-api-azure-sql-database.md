@@ -1,15 +1,13 @@
 ---
 lab:
-  title: Develop a Data API for Azure SQL Database
+  title: 'Develop a Data API for Azure SQL Database'
   module: Develop a Data API for Azure SQL Database
-  description: In this exercise, you will develop and deploy a data API for an Azure SQL Database using Azure Static Web Apps. This will provide hands-on experience in setting up a Data API Builder configuration and deploying it within an Azure Static Web App environment.
-  duration: 45 minutes
-  level: 300
-  islab: true
-  primarytopics:
-    - Azure
-    - Azure SQL Database
-    - Azure Static Web Apps
+  description: 'In this exercise, you will develop and deploy a data API for an Azure SQL Database using Azure Static Web Apps. This will provide hands-on experience in setting up a Data API Builder configuration and deploying it within an Azure Static Web App environment.'
+  duration: 45 # duration in minutes
+  level: 300 # 100 basic concepts, 200 foundations, 300 practical usage, 400 advanced scenarios, 500 expert design
+  islab: true # if this is not a lab that should be listed in the catalog, set to false
+  status: 'released' # in-development or released
+  targetDate: 2099-01-01 # Set to the future date when you expect an in-development lab to be released
 ---
 
 # Develop a Data API for Azure SQL Database
